@@ -15,8 +15,72 @@ import platform
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
 
+
+def check_wsl_tools():
+    
+    missing = []
+
+    try:
+        subprocess.run(
+            ["wsl", "--version"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=True
+        )
+    except Exception:
+        return ["WSL"]
+
+    try:
+        test = subprocess.run(
+            ["wsl", "echo", "test"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+        if "test" not in test.stdout:
+            return ["WSL"]
+    except Exception:
+        return ["WSL"]
+
+    mafft = subprocess.run(
+        ["wsl", "bash", "-lc", "command -v mafft"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True
+    )
+
+    if not mafft.stdout.strip():
+        missing.append("MAFFT")
+
+    iqtree = subprocess.run(
+        ["wsl", "bash", "-lc", "command -v iqtree2"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True
+    )
+
+    if not iqtree.stdout.strip():
+        missing.append("IQ-TREE")
+
+    return missing
+
+
+
+
 class PhylogenyApp:
     def __init__(self):
+
+        missing = check_wsl_tools()
+
+        if missing:
+            messagebox.showerror(
+                "Missing dependencies",
+                "The following components are missing:\n\n"
+                + "\n".join(missing) +
+                "\n\nPlease install them in WSL before running the application."
+            )
+            raise SystemExit
+        
         self.root = ctk.CTk()
         self.root.title("Phylogenetic Analysis Tool")
         self.root.geometry("800x600")
@@ -195,6 +259,13 @@ class PhylogenyApp:
     
     def align_sequences(self):
         
+        messagebox.showinfo(
+            "Information",
+            "The analysis will use WSL.\n"
+            "A terminal window may appear during processing."
+        )
+
+
         if not self.fasta_files:
             messagebox.showwarning("Warning", "Add FASTA files first!")
             return
