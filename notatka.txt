@@ -3,12 +3,3 @@
 
 TODO:
 readme
-dokumentacja - uzupelnic bibliografie
-
-
-
-cytochrome c oxidase subunit 4 isoform 1, mitochondrial
-
-
-Problemy
-wykruszylo sie przy mafft - za malo RAM wsl => .wslconfig

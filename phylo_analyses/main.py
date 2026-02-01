@@ -1,5 +1,3 @@
-
-from email import header
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 import customtkinter as ctk
@@ -63,9 +61,6 @@ def check_wsl_tools():
         missing.append("IQ-TREE")
 
     return missing
-
-
-
 
 class PhylogenyApp:
     def __init__(self):
