@@ -6,7 +6,7 @@
 \babel@toc {british}{}\relax 
 \babel@toc {polish}{}\relax 
 \thispagestyle {empty}
-\contentsline {chapter}{\numberline {1}Wstęp}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {1}Wprowadzenie}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Wprowadzenie do tematu}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Osadzenie problemu w dziedzinie}{1}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Cel pracy}{2}{section.1.3}%
@@ -18,53 +18,51 @@
 \contentsline {section}{\numberline {2.2}Sekwencje genetyczne jako dane wejściowe}{4}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Wyrównywanie sekwencji}{4}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Metody rekonstrukcji drzew filogenetycznych}{5}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Przegląd istniejących narzędzi i rozwiązań}{7}{chapter.3}%
+\contentsline {chapter}{\numberline {3}Przegląd istniejących narzędzi}{7}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Narzędzia do wyrównywania sekwencji}{7}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Narzędzia do inferencji filogenetycznej}{8}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Narzędzia do wizualizacji drzew filogenetycznych}{8}{section.3.3}%
+\contentsline {section}{\numberline {3.2}Narzędzia do rekonstrukcji filogenetycznej}{8}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Narzędzia do wizualizacji drzew filogenetycznych}{9}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Ograniczenia istniejących rozwiązań}{9}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Opis zastosowanych technologii i narzędzi}{9}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Python}{9}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Ubuntu - Linux}{9}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}MAFFT}{10}{subsection.3.5.3}%
-\contentsline {subsection}{\numberline {3.5.4}IQ-TREE 2}{10}{subsection.3.5.4}%
-\contentsline {subsection}{\numberline {3.5.5}System kontroli wersji: Git}{10}{subsection.3.5.5}%
-\contentsline {subsection}{\numberline {3.5.6}Repozytorium zdalne: Github}{10}{subsection.3.5.6}%
-\contentsline {chapter}{\numberline {4}Specyfikacja zewnętrzna systemu}{11}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Wymagania sprzętowe i systemowe}{11}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Instalacja}{11}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Instrukcja obsługi}{12}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Interfejs użytkownika}{12}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Przykład działania}{12}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Bezpieczeństwo}{15}{subsection.4.3.3}%
-\contentsline {chapter}{\numberline {5}Specyfikacja wewnętrzna systemu}{17}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Idea systemu}{17}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Wymagania funkcjonalne}{17}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Architektura}{18}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Warstwy systemu}{18}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Opis modułów systemu}{18}{subsection.5.3.2}%
-\contentsline {subsubsection}{Moduł interfejsu użytkownika}{18}{section*.13}%
-\contentsline {subsubsection}{Moduł logiki aplikacji}{18}{section*.14}%
-\contentsline {paragraph}{Parametry wykorzystywane w MAFFT[9]}{19}{lstlisting.5.-1}%
-\contentsline {paragraph}{Parametry wykorzystywane w IQ-TREE~2~[10]}{19}{lstlisting.5.-2}%
-\contentsline {subsubsection}{Moduł zarządzania danymi}{20}{section*.17}%
-\contentsline {subsubsection}{Moduł wizualizacji danych}{20}{section*.18}%
-\contentsline {chapter}{\numberline {6}Testy i analiza działania systemu}{21}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Cel testów}{21}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Testy dla sekwencji białek z bazy NCBI}{21}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Test 1: Cytochrome c}{21}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Test 2: Cytochrome c oxidase subunit 4}{23}{subsection.6.2.2}%
-\contentsline {section}{\numberline {6.3}Testy dla sekwencji nukleotydowych z bazy NCBI}{25}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Test 3: COX2–COX1}{25}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Test 4: Mitochondrialne sekwencje nukleotydowe}{26}{subsection.6.3.2}%
-\contentsline {section}{\numberline {6.4}Podsumowanie wyników}{28}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Analiza działania systemu}{29}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Potencjalny rozwój systemu}{29}{section.6.6}%
-\contentsline {chapter}{\numberline {7}Podsumowanie i wnioski}{31}{chapter.7}%
-\contentsline {chapter}{Bibliografia}{33}{chapter*.39}%
-\contentsline {chapter}{Źródła}{37}{appendix*.40}%
-\contentsline {subsubsection}{\textit }{37}{section*.41}%
-\contentsline {subsubsection}{\textit }{37}{section*.42}%
-\contentsline {chapter}{Załączniki}{39}{appendix*.43}%
-\contentsline {chapter}{Lista dodatkowych plików uzupełniających tekst pracy}{41}{appendix*.44}%
-\contentsline {chapter}{Spis rysunków}{43}{appendix*.45}%
+\contentsline {section}{\numberline {3.5}Opis zastosowanych technologii i narzędzi}{10}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Python}{10}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Ubuntu - Linux}{10}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}MAFFT}{11}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.4}IQ-TREE 2}{11}{subsection.3.5.4}%
+\contentsline {subsection}{\numberline {3.5.5}Jalview}{11}{subsection.3.5.5}%
+\contentsline {subsection}{\numberline {3.5.6}System kontroli wersji: Git}{11}{subsection.3.5.6}%
+\contentsline {subsection}{\numberline {3.5.7}Repozytorium zdalne: Github}{12}{subsection.3.5.7}%
+\contentsline {chapter}{\numberline {4}Specyfikacja zewnętrzna systemu}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Wymagania sprzętowe i systemowe}{13}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Instalacja}{13}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Instrukcja obsługi}{14}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Interfejs użytkownika}{14}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Przykład działania}{14}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Bezpieczeństwo}{17}{subsection.4.3.3}%
+\contentsline {chapter}{\numberline {5}Specyfikacja wewnętrzna systemu}{19}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Idea systemu}{19}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Wymagania funkcjonalne}{19}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Architektura}{20}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Warstwy systemu}{20}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Opis modułów systemu}{20}{subsection.5.3.2}%
+\contentsline {subsubsection}{Moduł interfejsu użytkownika}{20}{section*.12}%
+\contentsline {subsubsection}{Moduł logiki aplikacji}{20}{section*.13}%
+\contentsline {paragraph}{Parametry wykorzystywane w MAFFT [1]}{21}{lstlisting.5.-1}%
+\contentsline {paragraph}{Parametry wykorzystywane w IQ-TREE~2~[24]}{21}{lstlisting.5.-2}%
+\contentsline {subsubsection}{Moduł zarządzania danymi}{22}{section*.16}%
+\contentsline {subsubsection}{Moduł wizualizacji danych}{22}{section*.17}%
+\contentsline {chapter}{\numberline {6}Testy i analiza działania systemu}{23}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Cel testów}{23}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Testy dla sekwencji białek z bazy NCBI}{23}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Test 1: Cytochrom c}{23}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Test 2: Podjednostka IV oksydazy cytochromu c}{26}{subsection.6.2.2}%
+\contentsline {section}{\numberline {6.3}Testy dla sekwencji nukleotydowych z bazy NCBI}{28}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Test 3: COX2–COX1}{28}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Test 4: Mitochondrialne sekwencje nukleotydowe}{30}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Podsumowanie wyników}{32}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Analiza działania systemu}{32}{section.6.5}%
+\contentsline {section}{\numberline {6.6}Potencjalny rozwój systemu}{33}{section.6.6}%
+\contentsline {chapter}{\numberline {7}Podsumowanie i wnioski}{35}{chapter.7}%
+\contentsline {chapter}{Bibliografia}{37}{chapter*.39}%
+\contentsline {chapter}{Lista dodatkowych plików uzupełniających tekst pracy}{41}{chapter*.40}%
+\contentsline {chapter}{Spis rysunków}{43}{chapter*.41}%
+\contentsline {chapter}{Spis tabel}{45}{chapter*.42}%

@@ -129,7 +129,7 @@
 \usepackage{xstring}
 \usepackage{ifthen}
 \usepackage{caption}
-
+\usepackage{tabularx}
 
 
 \usepackage{ifxetex}
@@ -154,10 +154,10 @@
 \usepackage{mathtools}
 \usepackage{geometry}
 \usepackage{subcaption}   % subfigures
-\usepackage[page]{appendix} % toc,
-\renewcommand{\appendixtocname}{Dodatki}
-\renewcommand{\appendixpagename}{Dodatki}
-\renewcommand{\appendixname}{Dodatek}
+% \usepackage[page]{appendix} % toc,
+% \renewcommand{\appendixtocname}{Dodatki}
+% \renewcommand{\appendixpagename}{Dodatki}
+% \renewcommand{\appendixname}{Dodatek}
 
 \usepackage{csquotes}
 \usepackage[natbib=true,backend=bibtex,maxbibnames=99]{biblatex}  % kompilacja bibliografii BibTeXem
@@ -483,7 +483,7 @@ escapeinside={@*}{*@},%
 \Title
 
 \subsubsection*{Streszczenie}  
-Celem niniejszej pracy inżynierskiej było zaprojektowanie i zaimplementowanie systemu informatycznego do analiz filogenetycznych sekwencji białkowych. W ramach pracy pogłębiono wiedzę z zakresu filogenetyki oraz zintegrowano uznane algorytmy i narzędzia bioinformatyczne (MAFFT[1], IQ-TREE[2], Biopython[3]), tworząc kompleksowe rozwiązanie do przetwarzania danych. Zaprezentowano architekturę aplikacji umożliwiającą przygotowanie danych wejściowych, wyrównanie sekwencji, analizę filogenetyczną z automatycznym wyborem modelu ewolucyjnego oraz wizualizację drzew filogenetycznych. W pracy opisano szczegółowo strukturę programu, uzasadnienie wyboru narzędzi oraz wyniki testów na rzeczywistych danych z NCBI.
+Celem niniejszej pracy inżynierskiej było zaprojektowanie i zaimplementowanie systemu informatycznego do analiz filogenetycznych sekwencji białkowych. W ramach pracy pogłębiono wiedzę z zakresu filogenetyki oraz zintegrowano wybrane algorytmy i narzędzia bioinformatyczne (MAFFT [1], IQ-TREE [2], Biopython [3]), tworząc kompleksowe rozwiązanie do przetwarzania danych. Zaprezentowano architekturę aplikacji umożliwiającą przygotowanie danych wejściowych, wyrównanie sekwencji, analizę filogenetyczną z automatycznym wyborem modelu ewolucyjnego oraz wizualizację drzew filogenetycznych. W pracy opisano szczegółowo strukturę programu, uzasadnienie wyboru narzędzi oraz wyniki testów na rzeczywistych danych z NCBI [4].
 
 
 \subsubsection*{Słowa kluczowe} 
@@ -524,26 +524,26 @@ phylogenetics, bioinformatics, sequence alignment, phylogenetic analysis, evolut
 %%%%%%%%%%%%%% wlasciwa tresc pracy %%%%%%%%%%%%%%%%%
 
 % TODO
-\chapter{Wstęp}
+\chapter{Wprowadzenie}
 \label{ch:01-wstep}
 
 \section{Wprowadzenie do tematu}
-Analiza filogenetyczna wykorzystuje dane z dziedziny filogenetyki do rekonstrukcji ewolucyjnych zależności i podobieństw międzygatunkowych. Efektem procesu jest drzewo filogenetyczne, generowane w oparciu o wybrany model substytucji, które za pomocą rozgałęzień ilustruje odległości ewolucyjne między analizowanymi taksonami. Kluczowym przełomem w rozwoju tej dyscypliny okazał się postęp informatyki i programowania, umożliwiający automatyzację metod obliczeniowych oraz znaczące przyspieszenie analiz sekwencji genetycznych. Rozwój ten przyczynił się bezpośrednio do powstania nowych algorytmów wyrównywania sekwencji oraz metod inferencji drzew filogenetycznych.
-Wraz ze wzrostem złożoności algorytmów oraz liczby dostępnych narzędzi, proces analizy filogenetycznej przestał być jednorazowym obliczeniem, a stał się wieloetapowym zadaniem wymagającym doboru metod, parametrów oraz interpretacji wyników. W praktyce badawczej prowadzi to do konieczności łączenia wielu narzędzi programistycznych oraz zarządzania złożonymi procesami obliczeniowymi.
+Analiza filogenetyczna wykorzystuje dane z dziedziny filogenetyki do rekonstrukcji ewolucyjnych zależności i podobieństw międzygatunkowych. Efektem procesu jest drzewo filogenetyczne, generowane w oparciu o wybrany model substytucji, które za pomocą rozgałęzień ilustruje odległości ewolucyjne między analizowanymi taksonami. Kluczowym przełomem w rozwoju tej dyscypliny okazał się postęp informatyki i programowania, umożliwiający automatyzację metod obliczeniowych oraz znaczące przyspieszenie analiz sekwencji genetycznych. Rozwój ten przyczynił się bezpośrednio do powstania nowych algorytmów wyrównywania sekwencji oraz metod rekonstrukcji drzew filogenetycznych.
+Wraz ze wzrostem złożoności algorytmów oraz liczby dostępnych narzędzi, proces analizy filogenetycznej przestał być jednorazowym obliczeniem, a stał się wieloetapowym zadaniem wymagającym doboru metod, parametrów oraz interpretacji wyników. W praktyce badawczej prowadzi to do konieczności łączenia wielu narzędzi programistycznych oraz zarządzania złożonymi procesami obliczeniowymi [5][6].
 
 \section{Osadzenie problemu w dziedzinie}
 
-Współczesna analiza filogenetyczna osiągnęła wysoki poziom zaawansowania dzięki ciągłemu doskonaleniu algorytmów i opracowywaniu nowych metod rekonstrukcji drzew ewolucyjnych. Natomiast brak pewności co do optymalności najlepszych algorytmów powoduje, że nawet systemy oceny i porównywania metod opierają się głównie na statystyce. Kluczowym wyzwaniem w analizach filogenetycznych pozostaje pytanie o prawdopodobieństwo, że uzyskane rozwiązanie jest rzeczywiście najlepsze dla danego zbioru danych. Istniejące systemy analityczne mogą wskazać optymalny algorytm, metodę lub model substytucji dla konkretnej sekwencji, jednak ostateczny wybór wymaga integracji wielu narzędzi w spójny workflow. W praktyce badawczej analizy filogenetyczne wymagają wielokrotnego testowania algorytmów, modeli substytucji oraz parametrów wejściowych, co prowadzi do powstawania złożonych, trudnych do odtworzenia, porównania oraz powtarzalnego uruchamiania workflowów analitycznych. Brakuje systemów, które w sposób zintegrowany umożliwiałyby porównywanie wyników różnych metod, zarządzanie eksperymentami analitycznymi oraz wspomaganie decyzji o wyborze końcowego drzewa filogenetycznego.
+Współczesna analiza filogenetyczna osiągnęła wysoki poziom zaawansowania dzięki ciągłemu doskonaleniu algorytmów i opracowywaniu nowych metod rekonstrukcji drzew ewolucyjnych. Natomiast brak pewności co do optymalności najlepszych algorytmów powoduje, że nawet systemy oceny i porównywania metod opierają się głównie na statystyce. Kluczowym wyzwaniem w analizach filogenetycznych pozostaje pytanie o prawdopodobieństwo, że uzyskane rozwiązanie jest rzeczywiście najlepsze dla danego zbioru danych. Istniejące systemy analityczne mogą wskazać optymalny algorytm, metodę lub model substytucji dla konkretnej sekwencji, jednak ostateczny wybór wymaga integracji wielu narzędzi w spójny przepływ pracy analitycznej. W praktyce badawczej analizy filogenetyczne wymagają wielokrotnego testowania algorytmów, modeli substytucji oraz parametrów wejściowych, co prowadzi do powstawania złożonych, trudnych do odtworzenia, porównania oraz powtarzalnego uruchamiania procesów analitycznych. Brakuje systemów, które w sposób zintegrowany umożliwiałyby porównywanie wyników różnych metod, zarządzanie eksperymentami analitycznymi oraz wspomaganie decyzji o wyborze końcowego drzewa filogenetycznego [6].
 
 \section{Cel pracy} 
 
-Celem pracy było zaprojektowanie oraz zaimplementowanie systemu wspomagającego analizy filogenetyczne, umożliwiającego integrację poszczególnych etapów procesu analitycznego w spójny workflow. System ma na celu wsparcie użytkownika w rekonstrukcji drzew filogenetycznych poprzez automatyzację kluczowych kroków analizy oraz uporządkowaną prezentację wyników.
+Celem pracy było zaprojektowanie oraz zaimplementowanie systemu wspomagającego analizy filogenetyczne, umożliwiającego integrację poszczególnych etapów procesu analitycznego w spójny przepływ pracy analitycznej. System ma na celu wsparcie użytkownika w rekonstrukcji drzew filogenetycznych poprzez automatyzację kluczowych kroków analizy oraz uporządkowaną prezentację wyników.
 
 \section{Zakres pracy}
 
 Zakres pracy obejmuje analizę podstaw teoretycznych filogenetyki oraz przegląd wybranych metod i narzędzi wykorzystywanych w analizach filogenetycznych.
-W ramach pracy dokonano porównania dostępnych podejść do wyrównywania sekwencji, inferencji drzew filogenetycznych oraz doboru modeli ewolucyjnych. 
-Praca obejmuje zaprojektowanie i implementację systemu integrującego wybrane narzędzia analityczne w spójny workflow, umożliwiającego przeprowadzenie analizy filogenetycznej oraz wizualizację uzyskanych wyników. Zakres pracy nie obejmuje opracowywania nowych algorytmów filogenetycznych ani formalnej oceny biologicznej poprawności uzyskanych drzew.
+W ramach pracy dokonano porównania dostępnych podejść do wyrównywania sekwencji, rekonstrukcji drzew filogenetycznych oraz doboru modeli ewolucyjnych. 
+Praca obejmuje zaprojektowanie i implementację systemu integrującego wybrane narzędzia analityczne w spójny przepływ pracy analitycznej, umożliwiającego przeprowadzenie analizy filogenetycznej oraz wizualizację uzyskanych wyników. Zakres pracy nie obejmuje opracowywania nowych algorytmów filogenetycznych ani formalnej oceny biologicznej poprawności uzyskanych drzew.
 
 \section{Zwięzła charakterystyka rozdziałów}
 
@@ -559,8 +559,7 @@ Praca obejmuje zaprojektowanie i implementację systemu integrującego wybrane n
 
 \section{Określenie wkładu autora}
 
-Autor odpowiadał za zaprojektowanie architektury oraz implementację systemu wspomagającego analizy filogenetyczne. W ramach pracy autor dokonał integracji wybranych narzędzi do wyrównywania sekwencji, inferencji drzew filogenetycznych oraz doboru modeli ewolucyjnych w spójny workflow analityczny.
-Autor był również odpowiedzialny za przygotowanie mechanizmów wizualizacji wyników analizy oraz obsługę danych wejściowych, w tym pozyskiwanie sekwencji genetycznych z publicznie dostępnej bazy NCBI.
+W ramach niniejszej pracy zaprojektowano architekturę oraz zaimplementowano system wspomagający analizę filogenetyczną. Zrealizowano zarówno integrację wybranych narzędzi do wyrównywania sekwencji, rekonstrukcji drzew filogenetycznych oraz doboru modeli ewolucyjnych w spójny proces analityczny. Ponadto przygotowano mechanizmy wizualizacji wyników analizy oraz obsługę danych wejściowych, w tym pozyskiwanie sekwencji genetycznych z publicznie dostępnej bazy NCBI.
 
 \chapter{Podstawy teoretyczne analizy filogenetycznej}
 \label{ch:02-podstawy-teoretyczne-analizy-filogenetycznej}
@@ -569,42 +568,37 @@ Autor był również odpowiedzialny za przygotowanie mechanizmów wizualizacji w
 
 Filogenetyka jest dziedziną biologii zajmującą się badaniem filogenezy, czyli historii rozwoju rodowego organizmów oraz relacji pokrewieństwa pomiędzy taksonami. Obejmuje ona analizę przebiegu procesów ewolucyjnych prowadzących do różnicowania organizmów i powstawania nowych linii rozwojowych. Analiza filogenetyczna umożliwia określanie zależności ewolucyjnych między gatunkami i taksonami na podstawie różnych źródeł danych, takich jak zapisy paleontologiczne, anatomia porównawcza oraz dane molekularne.
 
-W niniejszej pracy wykorzystywane są metody filogenetyki molekularnej, które opierają się na analizie sekwencji DNA lub białek w celu rekonstrukcji relacji ewolucyjnych. Wynikiem takiej analizy jest przedstawione na rysunku 2.1 drzewo filogenetyczne — struktura graficzna przedstawiająca hipotezę pokrewieństwa pomiędzy badanymi taksonami. W zależności od zastosowanej metody rekonstrukcji oraz modelu ewolucyjnego, długości gałęzi drzewa mogą odzwierciedlać miarę zmian genetycznych lub mieć charakter wyłącznie topologiczny. [4][5]
+W niniejszej pracy wykorzystywane są metody filogenetyki molekularnej, które opierają się na analizie sekwencji DNA lub białek w celu rekonstrukcji relacji ewolucyjnych. Przykładem wyniku takiej analizy jest drzewo filogenetyczne (rys. 2.1) — struktura graficzna przedstawiająca hipotezę pokrewieństwa pomiędzy badanymi taksonami. W zależności od zastosowanej metody rekonstrukcji oraz modelu ewolucyjnego, długości gałęzi drzewa mogą odzwierciedlać miarę zmian genetycznych lub mieć charakter wyłącznie topologiczny [5][7].
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.5\textwidth]{drzewo_filo.png}
-    \caption{Drzewo filogenetyczne; źródło: [1]}
+    \caption{Drzewo filogenetyczne; źródło: [8] }
 \end{figure}
 
 \section{Sekwencje genetyczne jako dane wejściowe}
 
 Sekwencje genetyczne stanowią podstawowe dane wejściowe wykorzystywane w analizach filogenetycznych realizowanych przez system. Są to uporządkowane ciągi symboli reprezentujących nukleotydy DNA lub aminokwasy budujące białka. W zależności od rodzaju analizy, system może operować na sekwencjach nukleotydowych lub sekwencjach aminokwasowych.
 
-W praktyce analitycznej sekwencje genetyczne pozyskiwane są z badań włąsnych lub publicznych baz danych, takich jak NCBI, DDBJ, czy ENA i najczęściej zapisywane w formacie FASTA pokaznym na rysunku 2.2. Format ten umożliwia jednoznaczną identyfikację sekwencji oraz jej dalsze przetwarzanie przez narzędzia bioinformatyczne. Sekwencje mogą różnić się długością, stopniem kompletności oraz jakością danych, co wpływa na przebieg kolejnych etapów analizy. [4]
+W praktyce analitycznej sekwencje genetyczne pozyskiwane są z badań włąsnych lub publicznych baz danych, takich jak NCBI, DDBJ, czy ENA i najczęściej zapisywane w formacie FASTA (rys. 2.2). Format ten umożliwia jednoznaczną identyfikację sekwencji oraz jej dalsze przetwarzanie przez narzędzia bioinformatyczne. Sekwencje mogą różnić się długością, stopniem kompletności oraz jakością danych, co wpływa na przebieg kolejnych etapów analizy [4].
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{sekwencja_bialkowa.png}
-    \caption{Sekwencja białkowa; źródło: [2]}
+    \caption{Sekwencja białkowa; źródło: [4]}
 \end{figure}
 
 Ze względu na występowanie różnic długości sekwencji oraz obecność insercji i delecji, bezpośrednie porównywanie sekwencji nie jest możliwe. Z tego powodu przed rekonstrukcją drzewa filogenetycznego konieczne jest przeprowadzenie etapu wyrównywania sekwencji, który umożliwia ich porównywanie w ujednoliconej postaci.
 
 \section{Wyrównywanie sekwencji}
 
-Wyrównanie sekwencji jest kluczowym etapem w procesie analizy filogenetycznej, umożliwiającym porównywanie sekwencji genetycznych pochodzących od różnych organizmów. W wyniku procesów ewolucyjnych, takich jak insercje i delecje (indele), sekwencje mogą różnić się długością oraz zawierać przesunięcia pozycji homologicznych, co uniemożliwia ich bezpośrednie porównanie.
+Wyrównanie sekwencji jest kluczowym etapem w procesie analizy filogenetycznej, umożliwiającym porównywanie sekwencji nukleotydowych lub aminokwasowych pochodzących od różnych organizmów. W wyniku procesów ewolucyjnych, takich jak insercje i delecje (indele), sekwencje mogą różnić się długością oraz zawierać przesunięcia pozycji homologicznych, co uniemożliwia ich bezpośrednie porównanie.
 
-Celem wyrównania sekwencji jest identyfikacja pozycji homologicznych pomiędzy sekwencjami poprzez wprowadzenie przerw (ang. gaps), tak aby możliwe było ich dalsze przetwarzanie w kolejnych etapach analizy (rysunek 2.3). Wyrównanie pozwala na ujednolicenie długości sekwencji oraz określenie podobieństw i różnic wynikających z przebiegu ewolucji.
+Celem wyrównania sekwencji jest identyfikacja pozycji homologicznych pomiędzy sekwencjami poprzez wprowadzenie przerw (ang. gaps), tak aby możliwe było ich dalsze przetwarzanie w kolejnych etapach analizy. Wyrównanie pozwala na ujednolicenie długości sekwencji oraz określenie podobieństw i różnic wynikających z przebiegu ewolucji.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{alligment.png}
-    \caption{Wyrównane sekwencje białkowe; źródło: [2]}
-\end{figure}
+W zależności od zastosowanego algorytmu możliwe jest wykonywanie wyrównań globalnych, obejmujących całe sekwencje lub lokalnych, koncentrujących się na ich fragmentach. Klasycznymi algorytmami wykorzystywanymi w wyrównaniach par sekwencji są algorytm Needleman–Wunscha dla wyrównań globalnych oraz algorytm Smitha–Watermana dla wyrównań lokalnych. Algorytmy te nie znajdują jednak bezpośredniego zastosowania w analizach filogenetycznych, które wymagają jednoczesnego wyrównania większej liczby sekwencji. W tym celu stosuje się algorytmy przyrównania wielu sekwencji (MSA), takie jak metody progresywne FFT-NS-1 i FFT-NS-2 oraz metody iteracyjnego udoskonalania wyrównania, m.in. FFT-NS-i, L-INS-i, E-INS-i oraz G-INS-i, zaimplementowane w narzędziu MAFFT. Dobór metody wyrównania oraz jej parametrów ma istotny wpływ na jakość dalszej analizy filogenetycznej, w szczególności na poprawność rekonstrukcji drzewa ewolucyjnego.
 
-W zależności od zastosowanego algorytmu możliwe jest wykonywanie wyrównań globalnych, obejmujących całe sekwencje, lub lokalnych, koncentrujących się na ich fragmentach. Przykładami klasycznych algorytmów wykorzystywanych w tym celu są: algorytm Needlemana–Wunscha dla wyrównań globalnych oraz algorytm Smitha–Watermana dla wyrównań lokalnych. Dobór odpowiedniej metody wyrównania ma istotny wpływ na jakość dalszej analizy filogenetycznej.
-Wyrównanie może wymagać także poprawek manualnych, zwłaszcza w przypadku sekwencji o niskim stopniu podobieństwa lub zawierających liczne indels. W praktyce badawczej często stosuje się podejście iteracyjne, polegające na wielokrotnym wyrównywaniu sekwencji z różnymi parametrami oraz ręcznej korekcie wyników w celu uzyskania optymalnego wyrównania.[4][6]
+Wyrównanie sekwencji może wymagać dodatkowych poprawek manualnych, zwłaszcza w przypadku sekwencji o niskim stopniu podobieństwa lub zawierających liczne insercje i delecje. W praktyce badawczej często stosuje się podejście iteracyjne, polegające na wielokrotnym wykonywaniu wyrównań z różnymi parametrami oraz ręcznej korekcie wyników w celu uzyskania biologicznie uzasadnionego wyrównania [1][5][9].
 
 \section{Metody rekonstrukcji drzew filogenetycznych}
 
@@ -619,7 +613,7 @@ Wśród podstawowych metod rekonstrukcji drzew filogenetycznych wyróżnia się 
 \end{itemize} 
 Metody te różnią się sposobem modelowania procesu ewolucyjnego oraz podejściem do oceny najlepszego drzewa filogenetycznego. W zależności od zastosowanej metody, długości gałęzi drzewa mogą reprezentować liczbę zmian ewolucyjnych, estymowaną odległość genetyczną lub mieć charakter wyłącznie topologiczny.
 
-Metody rekonstrukcji drzew filogenetycznych różnią się zakresem przyjmowanych założeń oraz stopniem złożoności obliczeniowej. Metoda największej parsymonii opiera się na minimalizacji liczby zmian ewolucyjnych i nie wykorzystuje jawnych modeli probabilistycznych. Metody odległościowe bazują na macierzy odległości genetycznych pomiędzy sekwencjami, upraszczając analizę kosztem utraty części informacji. Metody największej wiarygodności oraz metody bayesowskie wykorzystują modele probabilistyczne opisujące proces substytucji, co pozwala na bardziej realistyczne modelowanie ewolucji, jednak wiąże się z większym kosztem obliczeniowym. [6]
+Metody rekonstrukcji drzew filogenetycznych różnią się zakresem przyjmowanych założeń oraz stopniem złożoności obliczeniowej. Metoda największej parsymonii opiera się na minimalizacji liczby zmian ewolucyjnych i nie wykorzystuje jawnych modeli probabilistycznych. Metody odległościowe bazują na macierzy odległości ewolucyjnych pomiędzy sekwencjami, upraszczając analizę kosztem utraty części informacji. Metody największej wiarygodności oraz metody bayesowskie wykorzystują modele probabilistyczne opisujące proces substytucji, co pozwala na bardziej realistyczne modelowanie ewolucji, jednak wiąże się z większym kosztem obliczeniowym [9].
 
 
 
@@ -632,62 +626,80 @@ Metody rekonstrukcji drzew filogenetycznych różnią się zakresem przyjmowanyc
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 % TODO
-\chapter{Przegląd istniejących narzędzi i rozwiązań}
-\label{ch:03-przeglad-istniejacych-narzedzi-i-rozwiazan}
-%here
+\chapter{Przegląd istniejących narzędzi}
+\label{ch:03-przeglad-istniejacych-narzedzi}
+
+Współczesne analizy filogenetyczne realizowane są z wykorzystaniem wyspecjalizowanych narzędzi informatycznych, które wspomagają poszczególne etapy przetwarzania danych sekwencyjnych. Ze względu na zróżnicowanie dostępnych metod oraz narzędzi, istotnym elementem projektowania analizy jest dobór odpowiednich programów do realizacji poszczególnych etapów procesu rekonstrukcji. W niniejszym rozdziale przedstawiono przegląd wybranych narzędzi stosowanych w analizach filogenetycznych, ze szczególnym uwzględnieniem programów do wyrównywania sekwencji oraz narzędzi do inferencji filogenetycznej.
+
 \section{Narzędzia do wyrównywania sekwencji}
 
-Szeroki wachlarz dostępnych programów do wyrównywania sekwencji umożliwia elastyczne dopasowanie narzędzia do rodzaju oraz rozmiaru analizowanych danych oraz potrzeb badawczych. Programy te wykorzystują różne algorytmy i strategie dopasowania, od klasycznych metod opartych na dynamicznym programowaniu, po bardziej zaawansowane heurystyki optymalizacyjne. Poniżej przedstawiono przegląd wybranych narzędzi do wielosekwencyjnego wyrównywania sekwencji[4]:
+Szeroki wachlarz dostępnych programów do wyrównywania sekwencji umożliwia elastyczne dopasowanie narzędzia do rodzaju oraz rozmiaru analizowanych danych oraz potrzeb badawczych. Programy te wykorzystują różne algorytmy i strategie dopasowania, od klasycznych metod opartych na dynamicznym programowaniu, po bardziej zaawansowane heurystyki optymalizacyjne. Poniżej przedstawiono przegląd wybranych narzędzi do wielosekwencyjnego wyrównywania sekwencji [5][10]:
 \begin{itemize}
-    \item \textbf{Clustal W i Clustal Omega} 
-    \item \textbf{MAFFT} 
-    \item \textbf{MUSCLE} 
-    \item \textbf{T-Coffee}
-    \item \textbf{PRANK} 
-    \item \textbf{ProbCons} 
+    \item \textbf{Clustal W i Clustal Omega} - klasyczne narzędzia do wyrównywania sekwencji, stosujące metodę progresywną [10].
+    \item \textbf{MAFFT} - narzędzie do wyrównania wielu sekwencji implementujące zestaw algorytmów progresywnych i iteracyjnych, umożliwiających wybór kompromisu pomiędzy dokładnością wyrównania a czasem obliczeń [1].
+    \item \textbf{MUSCLE} - narzędzie, które stosuje iteracyjne udoskonalanie wyrównania, co pozwala na osiągnięcie wysokiej dokładności przy umiarkowanym czasie obliczeń [10].
+    \item \textbf{T-Coffee} - narzędzie umożliwiające łączenie wyników różnych algorytmów wyrównywania w celu uzyskania bardziej wiarygodnego wyrównania konsensusowego, kosztem zwiększonego czasu obliczeń [11].
+    \item \textbf{PRANK} - uwzględniają procesy ewolucyjne, takie jak insercje i delecje, co pozwala na uzyskanie wyrównań lepiej odzwierciedlających historię ewolucyjną sekwencji [12].
 \end{itemize} 
 
-Do analizy i wprowadzania poprawek ręcznie mozna wykorzystać edytory wyrównań takie jak[4]:
+Do analizy i wprowadzania poprawek ręcznie można wykorzystać edytory wyrównań takie jak [5]:
 \begin{itemize}
-    \item \textbf{Jalview} 
-    \item \textbf{AliView} 
-    \item \textbf{MacVim}
+    \item \textbf{Jalview} - rozbudowane narzędzie do wizualizacji i edycji wyrównań
+    sekwencji, umożliwiające ich ręczną korektę, analizę konserwacji pozycji,
+    kolorowanie sekwencji oraz generowanie prostych drzew filogenetycznych [13].
+    \item \textbf{AliView} – lekki i wydajny edytor wyrównań, zaprojektowany do pracy
+    z bardzo dużymi zestawami sekwencji, oferujący podstawowe funkcje edycji oraz
+    przeglądania wyrównań w wielu popularnych formatach [14].
 \end{itemize}
 
-\section{Narzędzia do inferencji filogenetycznej}
+\section{Narzędzia do rekonstrukcji filogenetycznej}
 
-Inferencja filogenetyczna polega na rekonstrukcji drzewa filogenetycznego w oparciu o dane sekwencyjne. Dostępne są różne programy i metody, które realizują tę funkcję, wykorzystując odmienne podejścia. Wybór odpowiedniego narzędzia zależy od rodzaju danych, liczby sekwencji oraz wymagań dotyczących dokładności i czasu obliczeń[4].
+ Dostępne są różne programy i metody, które wykorzystując odmienne podejścia realizują rekonstrukcję drzewa filogenetycznego w oparciu o dane sekwencyjne. Wybór odpowiedniego narzędzia zależy od rodzaju danych, liczby sekwencji oraz wymagań dotyczących dokładności i czasu obliczeń. Poniżej zostały przedstawione wybrane narzędzia [4].
 \begin{itemize}
-    \item \textbf{IQ-TREE 2} 
-    \item \textbf{RAxML} 
-    \item \textbf{MrBayes} 
-    \item \textbf{PhyML} 
-    \item \textbf{PHYLIP}
-    \item \textbf{PAUP*}
-    \item \textbf{MEGA} 
+    \item \textbf{IQ-TREE 2} – nowoczesne narzędzie do rekonstrukcji drzew
+    filogenetycznych oparte na metodzie największej wiarygodności, oferujące
+    szeroki wybór modeli substytucji oraz wydajne algorytmy obliczeniowe [2].
+    \item \textbf{RAxML} – program wykorzystujący metodę największej wiarygodności,
+    zoptymalizowany do analizy dużych zbiorów danych i powszechnie stosowany
+    w badaniach filogenetycznych [15].
+    \item \textbf{MrBayes} – narzędzie realizujące inferencję filogenetyczną
+    z wykorzystaniem metod bayesowskich, umożliwiające estymację rozkładu
+    prawdopodobieństwa drzew oraz parametrów modeli ewolucyjnych [16].
+    \item \textbf{MEGA} – środowisko do analizy danych molekularnych, oferujące
+    funkcje rekonstrukcji drzew filogenetycznych z wykorzystaniem różnych
+    metod oraz przyjazny interfejs użytkownika [17].
 \end{itemize} 
 
-Po zakończeniu inferencji filogenetycznej często konieczne jest ocenienie wiarygodności uzyskanego drzewa. Do tego celu stosuje się metody takie jak bootstrap czy analiza bayesowska, które pozwalają na oszacowanie pewności poszczególnych gałęzi drzewa. Wiele z wymienionych narzędzi oferuje wbudowane funkcje do przeprowadzania takich analiz.
+Po zakończeniu rekonstrukcji drzewa filogenetycznego konieczna jest ocena wiarygodności uzyskanych wyników. W tym celu stosuje się metody, takie jak bootstrap, czy metody bayesowskie, które umożliwiają oszacowanie pewności poszczególnych węzłów drzewa
 
-Po zakończeniu analizy filogenetycznej otrzymuje się w postaci pliku tekstowego zawierającego opis drzewa w formacie Newick lub Nexus, który może być dalej przetwarzany i wizualizowany za pomocą dedykowanych narzędzi.[4]
+Wykorzystywana w niniejszym projekcie metoda bootstrap polega na wielokrotnym tworzeniu nowych zestawów danych poprzez losowe próbkowanie pozycji z wyrównania sekwencji oraz ponowną rekonstrukcję drzewa filogenetycznego. Częstość występowania danego węzła w kolejnych drzewach bootstrapowych traktowana jest jako miara jego wiarygodności. Im wyższa wartość bootstrap, tym większa pewność, że dana relacja filogenetyczna jest stabilna i dobrze wsparta przez dane [7].
+
+Po zakończeniu analizy filogenetycznej wynikiem jest drzewo filogenetyczne zapisane w postaci pliku tekstowego, zawierającego opis struktury drzewa w formacie Newick lub w pliku formatu NEXUS, które może być dalej przetwarzane i wizualizowane za pomocą dedykowanych narzędzi [5].
 
 \section{Narzędzia do wizualizacji drzew filogenetycznych}
 
 Do wizualizacji drzew filogenetycznych dostępne są różne narzędzia, które umożliwiają graficzne przedstawienie wyników analizy filogenetycznej. Poniżej przedstawiono wybrane programy do wizualizacji drzew:
 \begin{itemize}
-    \item \textbf{FigTree} 
-    \item \textbf{Dendroscope} 
-    \item \textbf{iTOL} 
-    \item \textbf{ETE Toolkit}
-    \item \textbf{Phylo.io}
+    \item \textbf{FigTree} - program desktopowy umożliwiający podstawową
+    wizualizację oraz edycję drzew filogenetycznych, w tym modyfikację
+    etykiet, długości gałęzi i wartości wsparcia [18].
+    \item \textbf{Dendroscope} – zaawansowane narzędzie do wizualizacji dużych
+    drzew filogenetycznych oraz sieci filogenetycznych, przystosowane do pracy
+    z rozbudowanymi zbiorami danych [19].
+    \item \textbf{iTOL} – aplikacja webowa oferująca
+    interaktywną wizualizację drzew oraz możliwość dodawania warstw
+    adnotacji, takich jak dane taksonomiczne, cechy fenotypowe czy metadane [20].
+    \item \textbf{ETE Toolkit} – biblioteka programistyczna umożliwiająca
+    automatyczną wizualizację, analizę i modyfikację drzew filogenetycznych [21].
 \end{itemize} 
 
 \section{Ograniczenia istniejących rozwiązań}
 
-Chociaż istnieją systemy i frameworki do automatyzacji analiz bioinformatycznych (np. Galaxy, Snakemake, Nextflow), w praktyce często wymaga się ręcznego ustawiania parametrów poszczególnych narzędzi oraz integracji wyników. Zaprojektowany system automatyzuje pełny łańcuch analizy — od wczytania sekwencji, przez wyrównanie i rekonstrukcję drzewa filogenetycznego, aż po wizualizację wyników — co ułatwia prowadzenie badań, zwiększa powtarzalność wyników i umożliwia prostsze korzystanie z analizy filogenetycznej, także osobom dopiero rozpoczynającym pracę z tymi metodami.
+Chociaż istnieją systemy i narzędzia programistyczne do automatyzacji analiz bioinformatycznych (np. Galaxy, Snakemake, Nextflow), w praktyce często wymaga się ręcznego ustawiania parametrów poszczególnych narzędzi oraz integracji wyników. W ramach niniejszego projektu inzynierskiego zaprojektowany został system automatyzujący pełny łańcuch analizy, od wczytania sekwencji, przez wyrównanie i rekonstrukcję drzewa filogenetycznego, aż po wizualizację wyników, co ułatwia prowadzenie badań, zwiększa powtarzalność wyników i umożliwia prostsze korzystanie z analizy filogenetycznej, także osobom dopiero rozpoczynającym pracę z tymi metodami.
 
 
 \section{Opis zastosowanych technologii i narzędzi}
+W celu realizacji systemu wspomagającego analizę filogenetyczną wykorzystano zestaw nowoczesnych technologii programistycznych oraz specjalistycznych narzędzi bioinformatycznych. Dobór zastosowanych rozwiązań podyktowany był koniecznością zapewnienia automatyzacji wieloetapowego procesu analitycznego, wysokiej wydajności obliczeniowej oraz możliwości integracji ze sobą nawzajem. W niniejszym podrozdziale przedstawiono opis użytych technologii, języków programowania oraz narzędzi, wraz z uzasadnieniem ich zastosowania w kontekście realizowanego projektu.
 
 \subsection{Python}
 Python jest wysokopoziomowym językiem programowania, powszechnie wykorzystywanym w bioinformatyce oraz do automatyzacji analiz danych. W projekcie Python został użyty jako główny język implementacji systemu, odpowiadający za sterowanie przebiegiem analizy filogenetycznej, obsługę interfejsu użytkownika oraz integrację z zewnętrznymi narzędziami bioinformatycznymi. Implementacja została wykonana w środowisku programistycznym Visual Studio Code.
@@ -705,10 +717,14 @@ W projekcie wykorzystano następujące biblioteki Pythona:
 System wykorzystuje środowisko systemu operacyjnego Ubuntu (Linux). Wybór systemu Linux podyktowany był wysoką kompatybilnością z narzędziami bioinformatycznymi, takimi jak MAFFT oraz IQ-TREE 2, które są natywnie rozwijane i testowane w tym środowisku.
 
 \subsection{MAFFT}
-Narzędzie do wyrównywania sekwencji DNA i białek. MAFFT oferuje różne algorytmy, które można dostosować do rozmiaru i charakterystyki danych wejściowych. W projekcie MAFFT został wykorzystany do przeprowadzenia etapu wyrównywania sekwencji przed rekonstrukcją drzewa filogenetycznego.
+MAFFT (Multiple Alignment using Fast Fourier Transform) jest narzędziem do wielosekwencyjnego wyrównywania sekwencji DNA i białek, opartym na algorytmach progresywnych oraz iteracyjnych. Wykorzystuje ono transformację Fouriera (FFT) do szybkiego szacowania podobieństwa pomiędzy sekwencjami, co pozwala na znaczące przyspieszenie obliczeń w porównaniu do klasycznych metod opartych na pełnym dynamicznym programowaniu. W zależności od charakterystyki danych wejściowych MAFFT umożliwia zastosowanie różnych strategii wyrównywania, takich jak metody progresywne (np. FFT-NS-1, FFT-NS-2) oraz metody iteracyjnego udoskonalania wyrównania (np. L-INS-i, E-INS-i, G-INS-i), stanowiące kompromis pomiędzy dokładnością a czasem obliczeń.
+W projekcie MAFFT został wykorzystany do przeprowadzenia etapu wyrównywania sekwencji poprzedzającego rekonstrukcję drzewa filogenetycznego [1].
 
 \subsection{IQ-TREE 2}
-Narzędzie do rekonstrukcji drzew filogenetycznych metodą największej wiarygodności (Maximum Likelihood). Program umożliwia automatyczny dobór modelu substytucji przy użyciu \texttt{ModelFinder}[7], oferuje wydajne algorytmy optymalizacji drzewa oraz pozwala na ocenę stabilności węzłów drzewa przy użyciu ultrafast bootstrap \texttt{UFBoot2}[8], co czyni go jednym z najczęściej wykorzystywanych narzędzi do inferencji filogenetycznej
+IQ-TREE 2 jest narzędziem do rekonstrukcji drzew filogenetycznych opartym na metodzie największej wiarygodności (Maximum Likelihood). Algorytm ten polega na poszukiwaniu takiej topologii drzewa oraz parametrów modelu substytucji, dla których prawdopodobieństwo obserwowanych danych sekwencyjnych jest maksymalne. Program wykorzystuje zaawansowane heurystyki przeszukiwania przestrzeni drzew, umożliwiające efektywną optymalizację topologii nawet dla dużych zbiorów danych. Dodatkowo IQ-TREE 2 implementuje algorytm ModelFinder[22] do automatycznego doboru najlepszego modelu substytucji oraz ultraszybką metodę bootstrap (UFBoot2)[23] do oceny wiarygodności węzłów drzewa filogenetycznego. Dzięki połączeniu wysokiej wydajności obliczeniowej oraz dokładnych metod statystycznych, narzędzie to jest powszechnie stosowane w analizach filogenetycznych [2].
+
+\subsection{Jalview}
+Jalview to rozbudowane narzędzie do wizualizacji i edycji wyrównań sekwencji, umożliwiające ręczną korektę wyrównań, analizę konserwacji pozycji oraz generowanie prostych drzew filogenetycznych. W projekcie Jalview został wykorzystany testowo do wizualizacji wyrównanych sekwencji, aby sprawdzić poprawność działania MAFFT [13].
 
 \subsection{System kontroli wersji: Git}
 Git pozwala na monitorowanie zmian oraz zarządzanie historią w kodzie źródłowym.
@@ -742,7 +758,7 @@ Minimalne wymagania systemowe:
 Aby uruchomic aplikację, należy wykonać następujące kroki:
 \begin{enumerate}
     \item Zainstalować Windows Subsystem for Linux (WSL) oraz dystrybucję Ubuntu 20.04 LTS lub nowszą.
-    \item W środowisku WSL zainstalować narzędzia MAFFT oraz IQ-TREE 2.
+    \item W środowisku WSL zainstalować narzędzia MAFFT [1] oraz IQ-TREE 2 [2].
     \item Upewnić się, że narzędzia są dostępne w ścieżce systemowej (PATH) w WSL.
     \item Pobrać kod źródłowy aplikacji z repozytorium GitHub \\ \href{https://github.com/FilipWspanialy/PhylogeneticAnalyses}{github.com/FilipWspanialy/PhylogeneticAnalyses} i uruchomić plik \texttt{main.exe} w systemie Windows.
 \end{enumerate}
@@ -751,7 +767,7 @@ Aby uruchomic aplikację, należy wykonać następujące kroki:
 
 \subsection{Interfejs użytkownika}
 
-Graficzny interfejs użytkownika umożliwia użytkownikowi:
+Graficzny interfejs użytkownika (rys. 4.1) umożliwia użytkownikowi:
 \begin{itemize}
     \item wczytanie sekwencji w formacie FASTA,
     \item Wyrównanie sekwencji przy użyciu MAFFT,
@@ -762,32 +778,32 @@ Graficzny interfejs użytkownika umożliwia użytkownikowi:
 
 \begin{figure}[H]
     \centering
-    \fbox{\includegraphics[width=0.8\textwidth]{interfejs.png}}
+    \fbox{\includegraphics[width=0.7\textwidth]{interfejs.png}}
     \caption{Interfejs użytkownika aplikacji}
 \end{figure}
 
 \subsection{Przykład działania}
 Poniżej przedstawiono przykładowy przebieg analizy filogenetycznej z wykorzystaniem aplikacji:
 \begin{enumerate}
-    \item Użytkownik uruchamia aplikację
-    \item Wczytuje plik FASTA z sekwencjami białkowymi.
+    \item Uruchomienie aplikacji
+    \item Wczytanie plików FASTA z sekwencjami białkowymi (rys. 4.2).
         \begin{center}
-            \fbox{\includegraphics[width=0.8\textwidth]{files.png}}\\
+            \fbox{\includegraphics[width=0.7\textwidth]{files.png}}\\
             \captionof{figure}{Wybór plików wejściowych}
         \end{center}
-    \item Inicjuje wyrównanie sekwencji za pomocą MAFFT.
+    \item Uruchomienie wyrównania sekwencji za pomocą MAFFT, którego produkt zostaje zapisany w utworzonym przez aplikację folderze (rys. 4.3).
         \begin{center}
-            \fbox{\includegraphics[width=0.8\textwidth]{align.png}}\\
+            \fbox{\includegraphics[width=0.7\textwidth]{align.png}}\\
             \captionof{figure}{Wyrównanie sekwencji}
         \end{center}
-    \item Po zakończeniu wyrównania, uruchamia analizę filogenetyczną z IQ-TREE 2.
+    \item Po zakończeniu wyrównania, uruchomienie analizy filogenetycznej z IQ-TREE 2 (rys. 4.4).
         \begin{center}
-            \fbox{\includegraphics[width=0.8\textwidth]{anal.png}}\\
+            \fbox{\includegraphics[width=0.7\textwidth]{anal.png}}\\
             \captionof{figure}{Analiza filogenetyczna}
         \end{center}
-    \item Po zakończeniu analizy następuje wizualizacja uzyskanego drzewa filogenetycznego.
+    \item Po zakończeniu analizy następuje wizualizacja uzyskanego drzewa filogenetycznego (rys. 4.5).
         \begin{center}
-            \fbox{\includegraphics[width=0.8\textwidth]{tree.png}}\\
+            \fbox{\includegraphics[width=0.7\textwidth]{tree.png}}\\
             \captionof{figure}{Wizualizacja drzewa filogenetycznego}
         \end{center}
 
@@ -806,7 +822,7 @@ Aplikacja nie przechowuje żadnych danych osobowych użytkownika.
 \section{Idea systemu}
 
 Celem aplikacji jest integracja istniejących, sprawdzonych narzędzi do analiz
-filogenetycznych w jeden spójny workflow umożliwiający przeprowadzenie analizy
+filogenetycznych w jeden spójny proces umożliwiający przeprowadzenie analizy
 bez konieczności posiadania wiedzy eksperckiej z zakresu filogenetyki.
 Użytkownik ma możliwość intuicyjnej pracy z plikami wejściowymi, natomiast dobór
 parametrów analizy oraz modeli ewolucyjnych odbywa się w sposób automatyczny.
@@ -883,7 +899,7 @@ W ramach tych metod wykorzystywane są funkcje \texttt{run\_mafft} oraz
 uruchamiają zewnętrzne narzędzia analityczne w środowisku Windows Subsystem
 for Linux.
 
-\paragraph{Parametry wykorzystywane w MAFFT[9]}
+\paragraph{Parametry wykorzystywane w MAFFT [1]}
 \begin{lstlisting}[language=Python]
 cmd = [
     "wsl", "mafft",
@@ -900,7 +916,7 @@ cmd = [
     \item \texttt{wsl\_input} – ścieżka do pliku FASTA w formacie zgodnym z WSL.
 \end{itemize}
 
-\paragraph{Parametry wykorzystywane w IQ-TREE~2~[10]}
+\paragraph{Parametry wykorzystywane w IQ-TREE~2~[24]}
 \begin{lstlisting}[language=Python]
 cmd = [
     "wsl", "iqtree2",
@@ -960,27 +976,46 @@ uzyskane drzewa filogenetyczne są zgodne z oczekiwaniami biologicznymi.
 
 \section{Testy dla sekwencji białek z bazy NCBI}
 
-\subsection{Test 1: Cytochrome c}
+Testy dla sekwencji białkowych przeprowadzono w celu oceny działania systemu na danych o różnym stopniu konserwatywności. Analiza obejmowała zarówno białka silnie konserwatywne, jak i sekwencje bardziej zmienne, co pozwoliło na kompleksową ocenę poprawności wyrównywania sekwencji oraz rekonstrukcji drzew filogenetycznych.
 
-\subsubsection*{Charakterytyka danych:}
-\begin{itemize}
-    \item Białko: cytochrome c
-    \item Liczba sekwencji: 10
-    \item Długość sekwencji: około 100 aminokwasów
-    \item Gatunki: ssaki
-    \item Źródło: NCBI Protein Database[2]
-\end{itemize}   
+\subsection{Test 1: Cytochrom c}
 
-Cytochrom c jest białkiem silnie konserwatywnym, powszechnie wykorzystywanym
+\begin{table}[h]
+\centering
+\caption{Charakterystyka sekwencji cytochromu c wykorzystanych w teście}
+\label{tab:cytochrome_c}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Gatunek (łac.)} & \textbf{Nazwa polska} & \textbf{Długość sekwencji (aa)} \\
+\hline
+\textit{Homo sapiens} & Człowiek rozumny & 105 \\
+\hline
+\textit{Bos taurus} & byk & 105 \\
+\hline
+\textit{Sus scrofa} & świnia & 105 \\
+\hline
+\textit{Tenrec ecaudatus} & Tenrek zwyczajny & 105 \\
+\hline
+\textit{Canis lupus familiaris} & Pies domowy & 105 \\
+\hline
+\textit{Equus caballus} & Koń & 105 \\
+\hline
+\textit{Camelus bactrianus} & Wielbłąd baktriański & 105 \\
+\hline
+\textit{Saimiri boliviensis} & Sajmiri czarnołbista & 131 \\
+\hline
+\textit{Saimiri boliviensis} & Sajmiri czarnołbista & 105 \\
+\hline
+\textit{Saimiri boliviensis} & Sajmiri czarnołbista & 105 \\
+\hline
+\end{tabular}
+}
+\end{table}
+
+
+Wykorzystane w teście numer 1 sekwencje (tab. 6.1) kodują cytochrom c, który jest białkiem silnie konserwatywnym, powszechnie wykorzystywanym
 w analizach filogenetycznych jako marker referencyjny.
-
-% figure of sequences 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{alignment_1.1.png}
-    \caption{Przykładowe wyrównane sekwencje białkowe - test 1; źródło: [2]}
-\end{figure}
-
 
 \subsubsection*{Cel testu:}
 \begin{itemize}
@@ -991,8 +1026,13 @@ w analizach filogenetycznych jako marker referencyjny.
     uzyskiwanych wyników.
 \end{itemize}
 
-% figure of tree
 \begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=1\textwidth]{alignment_1.1.png}}
+    \caption{Fragment wyrównanych sekwencji białkowe - test 1}
+\end{figure}
+
+\begin{figure}[h]
     \centering
     \fbox{\includegraphics[width=0.8\textwidth]{phylogenetic_tree_1.1.png}}
     \caption{Drzewo filogenetyczne dla cytochromu c - test 1}
@@ -1000,35 +1040,50 @@ w analizach filogenetycznych jako marker referencyjny.
 
 \subsubsection*{Wyniki testu:}
 
-Test przeprowadzony na krótkich sekwencjach białkowych cytochromu c zakończył się powodzeniem. Aplikacja poprawnie zrealizowała pełny pipeline analizy filogenetycznej, integrując narzędzia MAFFT oraz IQ-TREE 2 – od etapu wyrównania sekwencji po rekonstrukcję drzewa filogenetycznego.
+Test przeprowadzony na krótkich sekwencjach białkowych cytochromu c zakończył się powodzeniem. Aplikacja poprawnie zrealizowała pełny proces analizy filogenetycznej, integrując narzędzia MAFFT oraz IQ-TREE 2, od etapu wyrównania sekwencji (rys. 6.1) po rekonstrukcję drzewa filogenetycznego (rys. 6.2).
 
 Uzyskane drzewo filogenetyczne jest zgodne z ogólnymi oczekiwaniami biologicznymi i odzwierciedla znane relacje filogenetyczne pomiędzy analizowanymi gatunkami ssaków. Celowe uwzględnienie trzech sekwencji pochodzących od tego samego gatunku skutkowało ich bliskim sąsiedztwem na drzewie wynikowym, co potwierdza poprawność działania algorytmów wyrównywania oraz rekonstrukcji drzewa.
 
-Wysokie wartości wsparcia bootstrap (>70) obserwowane są dla węzłów odpowiadających głównym podziałom taksonomicznym, natomiast dla rozgałęzień pomiędzy blisko spokrewnionymi gatunkami wartości bootstrap są niższe (25–65). Wynika to z wysokiej konserwatywności białka cytochromu c, które dostarcza ograniczonej ilości sygnału filogenetycznego.
+Wysokie wartości bootstrap (>70) obserwowane są dla węzłów odpowiadających głównym podziałom taksonomicznym, natomiast dla rozgałęzień pomiędzy blisko spokrewnionymi gatunkami wartości bootstrap są niższe (25–65). Wynika to z wysokiej konserwatywności białka cytochromu c, które dostarcza ograniczonej ilości sygnału filogenetycznego.
 
 Test potwierdza poprawność działania zaprojektowanego systemu na prostych, kontrolowanych danych wejściowych oraz poprawną integrację wykorzystanych narzędzi bioinformatycznych.
 
+\newpage
+\subsection{Test 2: Podjednostka IV oksydazy cytochromu c}
 
-\subsection{Test 2: Cytochrome c oxidase subunit 4}
+\begin{table}[h]
+\centering
+\caption{Charakterystyka sekwencji białka COX4 wykorzystanych w analizie filogenetycznej}
+\label{tab:cox4_proteins}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Gatunek (łac.)} & \textbf{Nazwa polska} & \textbf{Długość sekwencji (aa)} \\
+\hline
+\textit{Octopus vulgaris} & Ośmiornica zwyczajna & 174 \\
+\hline
+\textit{Apis mellifera} & Pszczoła miodna & 169 \\
+\hline
+\textit{Bactrocera dorsalis} & Muszka owocowa & 170 \\
+\hline
+\textit{Gadus morhua} & Dorsz & 176 \\
+\hline
+\textit{Columba livia} & Gołąb skalny & 168 \\
+\hline
+\textit{Anas platyrhynchos} & Kaczka krzyżówka & 168 \\
+\hline
+\textit{Sus scrofa} & Świnia & 169 \\
+\hline
+\textit{Ovis aries} & Owca & 169 \\
+\hline
+\textit{Danio rerio} & Danio pręgowany & 171 \\
+\hline
+\end{tabular}
+}
+\end{table}
 
-\subsubsection*{Charakterytyka danych:}
-\begin{itemize}
-    \item Białko: cytochrome c oxidase subunit 4 (COX4)
-    \item Liczba sekwencji: 9
-    \item Długość sekwencji: około 170 aminokwasów
-    \item Gatunki: głównie ssaki i ryby, ale także owady i mięczaki
-    \item Źródło: NCBI Protein Database[2]
-\end{itemize}   
 
-COX4 jest integralną podjednostką enzymu cytochrome c oxidase (kompleks IV), uczestniczącego w końcowym etapie łańcucha oddechowego. W przeciwieństwie do cytochromu c, sekwencja COX4 jest mniej konserwatywna ewolucyjnie i wykazuje większą zmienność pomiędzy odlegle spokrewnionymi gatunkami.
-
-% figure of sequences 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{alignment_1.2.png}
-    \caption{Przykładowe sekwencje białkowe - test 2; źródło: [2]}
-\end{figure}
-
+Wykorzystane dane zawierają sekwencje białkowe COX4 dla różnych gatunków \newline(tab. 6.2). COX4 jest integralną podjednostką oksydazy enzymu cytochromu c (kompleks IV), uczestniczącego w końcowym etapie łańcucha oddechowego. W przeciwieństwie do cytochromu c, sekwencja COX4 jest mniej konserwatywna ewolucyjnie i wykazuje większą zmienność pomiędzy odlegle spokrewnionymi gatunkami.
 
 \subsubsection*{Cel testu:}
 \begin{itemize}
@@ -1036,7 +1091,12 @@ COX4 jest integralną podjednostką enzymu cytochrome c oxidase (kompleks IV), u
     \item Sprawdzenie jakości wyrównania i stabilności drzewa filogenetycznego dla białek o różnych długościach i izoformach.
 \end{itemize}
 
-% figure of tree
+\begin{figure}[h]
+    \centering
+    \fbox{\includegraphics[width=1\textwidth]{alignment_1.2.png}}
+    \caption{Fragment wyrównanych sekwencji białkowe - test 2}
+\end{figure}
+
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=0.8\textwidth]{phylogenetic_tree_1.2.png}}
@@ -1045,7 +1105,7 @@ COX4 jest integralną podjednostką enzymu cytochrome c oxidase (kompleks IV), u
 
 \subsubsection*{Wyniki testu:}
 
-Test przeprowadzono na sekwencjach białka COX4 pochodzących z różnych grup taksonomicznych, w tym ssaków, ryb, owadów i mięczaków. Aplikacja poprawnie zintegrowała narzędzia MAFFT oraz IQ-TREE 2, generując wyrównanie sekwencji oraz drzewo filogenetyczne.
+Test przeprowadzono na sekwencjach białka COX4 pochodzących z różnych grup taksonomicznych, w tym ssaków, ryb, owadów i mięczaków. Aplikacja poprawnie zintegrowała narzędzia MAFFT oraz IQ-TREE 2, generując wyrównanie sekwencji (rys. 6.3) oraz drzewo filogenetyczne (rys. 6.4).
 
 Uzyskane drzewo wykazuje logiczną strukturę filogenetyczną. Octopus vulgaris został wyraźnie odseparowany jako najbardziej odległy takson w zbiorze. Apis mellifera i Bactrocera dorsalis tworzą klad owadów z umiarkowanym wsparciem bootstrap (86). Gatunki ryb i ptaków grupują się w stabilne klady, np. Columba livia i Anas platyrhynchos (bootstrap 97) oraz Sus scrofa i Ovis aries (bootstrap 100).
 
@@ -1056,24 +1116,40 @@ Wysokie wartości bootstrap dla głównych kladów (75–100) wskazują na stabi
 
 \subsection{Test 3: COX2–COX1}
 
-\subsubsection*{Charakterytyka danych:}
-\begin{itemize}
-    \item Sekwencje: COX2–COX1 intergenic spacer oraz częściowa sekwencja genu COX1, mitochondrialna
-    \item Liczba sekwencji: 10
-    \item Długość sekwencji: około 700 nukleotydów
-    \item Gatunki: koralowce głębinowe
-    \item Źródło: NCBI Protein Database[2]
-\end{itemize}   
+\begin{table}[H]
+\centering
+\caption{Charakterystyka sekwencji mitochondrialnych wykorzystanych w analizie filogenetycznej}
+\label{tab:cox1_intergenic}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Gatunek (łac.)} & \textbf{Nazwa polska} & \textbf{Długość sekwencji  (bp)} \\
+\hline
+\textit{Calyptrophora clinata} & Koralowiec klinowaty & 925 \\
+\hline
+\textit{Thouarella grasshoffi} & Koralowiec grasshoffi & 914\\
+\hline
+\textit{Primnoa sp.} & Koralowiec primnoa & 925 \\
+\hline
+\textit{Narella versluysi} & Koralowiec versluysi & 925 \\
+\hline
+\textit{Candidella imbricata} & Koralowiec imbricata & 925 \\
+\hline
+\textit{Narella bellissima} & Koralowiec bellissima & 925 \\
+\hline
+\textit{Chrysogorgia sp.} & Koralowiec chrysogorgia & 918\\
+\hline
+\textit{Chelidonisis aurantiaca} & Koralowiec aurantiaca & 920 \\
+\hline
+\textit{Keratoisididae sp. F1} & Koralowiec keratoisididae F1 & 922 \\
+\hline
+\textit{Acanella sp.} & Koralowiec acanella & 923 \\
+\hline
+\end{tabular}
+}
+\end{table}
 
-Sekwencje nukleotydowe wykorzystano do rekonstrukcji filogenezy na poziomie gatunków i bliskich rodzin koralowców. Ze względu na większą zmienność w porównaniu z białkami mitochondrialnymi, sekwencje te dostarczają bardziej szczegółowego sygnału filogenetycznego między taksonami blisko spokrewnionymi
-
-% figure of sequences 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{alignment_2.2.png}
-    \caption{Przykładowa sekwencja nukleotydowa - test 3; źródło: [2]}
-\end{figure}
-
+Sekwencje nukleotydowe wykorzystano do rekonstrukcji filogenezy na poziomie gatunków i bliskich rodzin koralowców (tab. 6.3). Ze względu na większą zmienność w porównaniu z białkami mitochondrialnymi, sekwencje te dostarczają bardziej szczegółowego sygnału filogenetycznego między taksonami blisko spokrewnionymi
 
 \subsubsection*{Cel testu:}
 \begin{itemize}
@@ -1081,16 +1157,21 @@ Sekwencje nukleotydowe wykorzystano do rekonstrukcji filogenezy na poziomie gatu
     \item Sprawdzenie, czy narzędzia MAFFT i IQ-TREE 2 radzą sobie z fragmentami genów mitochondrialnych o różnej długości i zmienności.
 \end{itemize}
 
-% figure of tree
 \begin{figure}[H]
     \centering
-    \fbox{\includegraphics[width=0.8\textwidth]{phylogenetic_tree_2.2.png}}
+    \fbox{\includegraphics[width=1\textwidth]{alignment_2.1.png}}
+    \caption{Fragment wyrównanych sekwencji nukleotydowych - test 3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=0.8\textwidth]{phylogenetic_tree_2.1.png}}
     \caption{Drzewo filogenetyczne dla COX2–COX1 - test 3}
 \end{figure}
 
 \subsubsection*{Wyniki testu:}
 
-Test przeprowadzono na sekwencjach nukleotydowych COX2–COX1 pochodzących od gatunków głębinowych koralowców. Aplikacja poprawnie zrealizowała pełen pipeline analizy filogenetycznej, obejmujący wyrównanie sekwencji oraz rekonstrukcję drzewa filogenetycznego.
+Test przeprowadzono na sekwencjach nukleotydowych COX2–COX1 pochodzących od gatunków głębinowych koralowców (tab. 6.3). Aplikacja poprawnie zrealizowała pełen proces analizy filogenetycznej, obejmujący wyrównanie sekwencji (rys. 6.5) oraz rekonstrukcję drzewa filogenetycznego (rys. 6.6).
 
 Uzyskane drzewo wykazuje logiczną organizację taksonomiczną. Calyptrophora clinata została odseparowana jako samodzielny takson, natomiast blisko spokrewnione gatunki, takie jak Thouarella grasshoffi, Narella versluysi, Candidella imbricata oraz Narella bellissima, grupują się w zagnieżdżone klady. Wartości bootstrap dla tych rozgałęzień są zróżnicowane (29–99), co odzwierciedla zmienność sekwencji nukleotydowych.
 
@@ -1099,23 +1180,52 @@ Najwyższe wsparcie bootstrap obserwuje się dla kladów dobrze określonych gen
 \subsection{Test 4: Mitochondrialne sekwencje nukleotydowe}
 
 \subsubsection*{Charakterytyka danych:}
-\begin{itemize}
-    \item Sekwencje: pełne genomu mitochondrialnego
-    \item Liczba sekwencji: 15
-    \item Długość sekwencji: około 17000 nukleotydów
-    \item Gatunki: różne, głównie owady i ryby
-    \item Źródło: NCBI Protein Database[2]
-\end{itemize}   
+\begin{table}[H]
+\centering
+\caption{Charakterystyka pełnych genomów mitochondrialnych wykorzystanych w analizie}
+\label{tab:mitogenomes}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|}
+\hline
+\textbf{Gatunek (łac.)} & \textbf{Nazwa polska} & \textbf{Długość sekwencji (bp)} \\
+\hline
+\textit{Loxocephala sichuanensis} & Koralowiec sichuanensis & 15605 \\
+\hline
+\textit{Synanthedon bicingulata} & Koralowiec synanthedon bicingulata & 16255 \\
+\hline
+\textit{Salurnis marginella} & Koralowiec salurnis marginella & 16126 \\
+\hline
+\textit{Pintara bowringi}& Koralowiec pintara bowringi & 15525 \\
+\hline
+\textit{Dolycoris penicillatus} & Koralowiec dolycoris penicillatus & 15630 \\
+\hline
+\textit{Dolycoris indicu} & Koralowiec dolycoris indicu & 15686 \\
+\hline
+\textit{Pyrausta phoenicealis} & Koralowiec pyrausta phoenicealis & 15281 \\
+\hline
+\textit{Hemibagrus punctatus} & Koralowiec hemibagrus punctatus  & 16517 \\
+\hline
+\textit{Scleromystax barbatus} & Koralowiec scleromystax barbatus & 16651 \\
+\hline
+\textit{Ortmanniana ligamentina} & Koralowiec ortmanniana ligamentina & 17015 \\
+\hline
+\textit{Prothemus sanguinosus} & Koralowiec themus sanguinosus & 16985 \\
+\hline
+\textit{Fissocantharis imparicornis} & Koralowiec fissocantharis imparicornis & 16147 \\
+\hline
+\textit{Cyrebion gracilicornis} & Koralowiec cyrebion gracilicornis & 17179 \\
+\hline
+\textit{Themus luteipes} & Koralowiec themus luteipes & 16812 \\
+\hline
+\textit{Themus stigmaticus} & Koralowiec themus stigmaticus & 16970 \\
+\hline
+\end{tabular}
+}
+\end{table}
 
 
-Sekwencje obejmują kompletne genomu mitochondrialne poszczególnych gatunków, co zapewnia bogaty sygnał filogenetyczny i umożliwia analizę relacji ewolucyjnych na poziomie całych genomów.
 
-% figure of sequences 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{alignment_2.2.png}
-    \caption{Przykładowy fragment sekwencji nukleotydowej - test 4; źródło: [2]}
-\end{figure}
+Analizowany zbiór (tab. 6.4) obejmuje kompletne sekwencje genomu mitochondrialnego poszczególnych gatunków, co zapewnia bogaty sygnał filogenetyczny i umożliwia analizę relacji ewolucyjnych na poziomie całych genomów.
 
 
 \subsubsection*{Cel testu:}
@@ -1125,8 +1235,12 @@ Sekwencje obejmują kompletne genomu mitochondrialne poszczególnych gatunków, 
     \item Sprawdzenie jakości wyrównania oraz stabilności rekonstrukcji drzewa filogenetycznego przy sekwencjach o dużej długości.
 \end{itemize}
 
+\begin{figure}[H]
+    \centering
+    \fbox{\includegraphics[width=1\textwidth]{alignment_2.2.png}}
+    \caption{Fragment wyrównanych sekwencji nukleotydowych - test 4}
+\end{figure}
 
-% figure of tree
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=0.8\textwidth]{phylogenetic_tree_2.2.png}}
@@ -1136,11 +1250,11 @@ Sekwencje obejmują kompletne genomu mitochondrialne poszczególnych gatunków, 
 
 \subsubsection*{Wyniki testu:}
 
-Aplikacja poprawnie wykonała pełen pipeline analizy filogenetycznej dla pełnych genomów mitochondrialnych, obejmujący wyrównanie sekwencji oraz rekonstrukcję drzewa filogenetycznego.
+Aplikacja poprawnie wykonała pełen proces analizy filogenetycznej dla pełnych genomów mitochondrialnych, obejmujący wyrównanie sekwencji (rys. 6.7) oraz rekonstrukcję drzewa filogenetycznego (rys. 6.8).
 
 W porównaniu z testami na krótszych fragmentach genów, czas obliczeń był znacząco dłuższy, co bezpośrednio wynika z dużej długości analizowanych sekwencji. Jednocześnie pipeline zachował stabilność działania, potwierdzając możliwość analizy dużych zestawów danych.
 
-Uzyskane drzewo filogenetyczne wykazuje wysoką spójność z oczekiwanymi relacjami taksonomicznymi. Węzły odpowiadające głównym grupom charakteryzują się wysokimi wartościami bootstrap (>95), natomiast niższe wsparcie (70–85) obserwowane dla części rozgałęzień pomiędzy blisko spokrewnionymi gatunkami stanowi naturalny efekt ograniczonej różnorodności mitochondrialnej.
+Uzyskane drzewo filogenetyczne wykazuje wysoką spójność z oczekiwanymi relacjami taksonomicznymi. Węzły odpowiadające głównym grupom charakteryzują się wysokimi wartościami bootstrap (>95), natomiast niższe wsparcie (78–85) obserwowane dla części rozgałęzień pomiędzy blisko spokrewnionymi gatunkami stanowi naturalny efekt ograniczonej różnorodności mitochondrialnej.
 
 Test potwierdza, że system radzi sobie poprawnie z dużymi sekwencjami nukleotydowymi, zapewniając stabilne i wiarygodne wyniki analizy filogenetycznej.
 
@@ -1152,7 +1266,7 @@ Wyniki analiz filogenetycznych uzyskane w trakcie testów wskazują, że aplikac
 
 Celem testów była weryfikacja poprawności działania systemu, a nie uzyskanie wyników naukowych. Uzyskane drzewa filogenetyczne wykazały spójność z oczekiwanymi relacjami taksonomicznymi, co potwierdza skuteczność zastosowanych algorytmów wyrównywania sekwencji i rekonstrukcji drzewa.
 
-Zaobserwowano również przewidywaną zależność pomiędzy długością sekwencji a czasem analizy – dłuższe sekwencje wymagają więcej czasu obliczeniowego, a wraz ze wzrostem liczby danych konieczne jest zwiększenie mocy obliczeniowej.
+Zaobserwowano również przewidywaną zależność pomiędzy długością sekwencji a czasem analizy – dłuższe sekwencje wymagają więcej czasu obliczeniowego, a wraz ze wzrostem liczby analizowanych sekwencji konieczne jest zwiększenie mocy obliczeniowej.
 
 \section{Analiza działania systemu}
 
@@ -1182,45 +1296,58 @@ W pracy przeanalizowano relatywnie niewielkie zbiory danych, jednak w przypadku 
 Pomimo wiedzy na temat podobieństw międzygatunkowych i możliwości porównywania ich z cechami morfologicznymi, należy pamiętać, że proces ewolucji zachodzi przez bardzo długi czas i może obejmować zmiany trudne do uchwycenia przy użyciu dostępnych modeli. W związku z tym, nawet jeśli dwa organizmy wydają się podobne, analiza filogenetyczna opiera się na przyjętym wzorcu zmian sekwencji, który najlepiej odzwierciedla ewolucyjny sygnał, ale nie zawsze oddaje pełną złożoność historii ewolucyjnej.
 
 Zaleca się, aby wyniki analiz traktować w kontekście biologicznym, uzupełniając je wiedzą morfologiczną i ekologiczną oraz stosując różne metody rekonstrukcji drzewa filogenetycznego w celu oceny stabilności wniosków.
+
+
+
+Na podstawie przeprowadzonych testów można stwierdzić, że opracowany system poprawnie integruje narzędzia bioinformatyczne wykorzystywane w analizach filogenetycznych i umożliwia rekonstrukcję drzew filogenetycznych dla różnych typów danych sekwencyjnych.
+Uzyskane wyniki są zgodne z oczekiwaniami biologicznymi oraz literaturą przedmiotu, co potwierdza poprawność działania zaproponowanego rozwiązania.
+Jednocześnie należy podkreślić, że jakość wyników zależy od doboru danych wejściowych, modeli ewolucyjnych oraz parametrów analizy, co wymaga świadomej interpretacji rezultatów.
+Opracowane narzędzie może stanowić użyteczne wsparcie w analizach filogenetycznych, szczególnie w przypadku niewielkich i średnich zbiorów danych.
 \backmatter
 
 \newpage 
 
 \chapter{Bibliografia}
+
     \textit{[1]} MAFFT Manual [online] \url{https://mafft.cbrc.jp/alignment/software/manual/manual.html}, data dostępu: 29.01.2026.\\
-\textit{[2]} Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
-Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
-IQ-TREE 2: New models and efficient methods for phylogenetic inference
-in the genomic era. *Mol. Biol. Evol.*, in press. \url{https://doi.org/10.1093/molbev/msaa015}, data dostępu: 29.01.2026.\\
-\textit{[3]} Cock, P.J.A., Antao, T., Chang, J.T., Chapman, B.A., Cox, C.J., Dalke, A., Friedberg, I., Hamelryck, T., Kauff, F., Wilczynski, B., de Hoon, M.J.L. (2009) Biopython: freely available Python tools for computational molecular biology and bioinformatics. *Bioinformatics*, 25(11), 1422–1423.\\
-\textit{[4]} Grzegorz Góralski \textit{Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych} [online] \url{https://ggoralski.github.io/proba_mdbook/print.html#wst%C4%99p-do-filogenetyki-molekularnej-i-tworzenia-drzew-filogenetycznych}, data dostępu: 09.01.2026.\\
-\textit{[5] PWN Encyklopedia} [online]  \url{https://encyklopedia.pwn.pl/haslo/filogeneza;3900970.html}, data dostępu: 09.01.2026. \\
-\textit{[6]} Krzysztof Spalik, Marcin Piwczyński \textit{Rekonstrukcja filogenezy i wnioskowanie filogenetyczne w badaniach ewolucyjnych} [artykuł] KOSMOS, Problemy Nauk Biologicznych,
-t. 58, nr 3–4, 2009, s. 485–498.\\
-\textit{[7]} Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler, Lars S. Jermiin \textit{ModelFinder: Fast model selection for accurate phylogenetic estimates} [artykuł] Nature Methods, 14:587–589, 2017. \url{https://doi.org/10.1038/nmeth.4285}, data dostępu: 31.01.2026. \\
-\textit{[8]} Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh, Le Sy Vinh \textit{UFBoot2: Improving the ultrafast bootstrap approximation} [artykuł] Mol. Biol. Evol., 35:518–522, 2018. \url{https://doi.org/10.1093/molbev/msx281}, data dostępu: 31.01.2026. \\
-\textit{[9]} MAFFT Manual [online] \url{https://mafft.cbrc.jp/alignment/software/manual/manual.html}, data dostępu: 29.01.2026. \\
-\textit{[10]} IQ-TREE 2 Command Reference [online] \url{https://iqtree.github.io/doc/Command-Reference}, data dostępu: 29.01.2026. \\
+\textit{[2]} Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf, Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020) \\
+\textit{IQ-TREE 2: New models and efficient methods for phylogenetic inference in the genomic era. *Mol. Biol. Evol.*}, in press. \url{https://doi.org/10.1093/molbev/msaa015}, data dostępu: 29.01.2026.\\
+\textit{[3]} Cock, P.J.A., Antao, T., Chang, J.T., Chapman, B.A., Cox, C.J., Dalke, A., Friedberg, I., Hamelryck, T., Kauff, F., Wilczynski, B., de Hoon, M.J.L. (2009) \textit{Biopython: freely available Python tools for computational molecular biology and bioinformatics. *Bioinformatics*}, 25(11), 1422–1423.\\
+\textit{[4]} National Center for Biotechnology Information [online]  \url{https://www.ncbi.nlm.nih.gov/guide/data-software/}, data dostępu: 09.01.2026. \\
+\textit{[5]} Grzegorz Góralski \textit{Wstęp do filogenetyki molekularnej i tworzenia drzew filogenetycznych} [online] \url{https://ggoralski.github.io/proba_mdbook/print.html#wst%C4%99p-do-filogenetyki-molekularnej-i-tworzenia-drzew-filogenetycznych}, data dostępu: 09.01.2026.\\
+\textit{[6]} Płoński, P., Radomski, J. (2011) \textit{Translacja drzew filogenetycznych}. Zeszyty Naukowe Wydziału Elektroniki, Telekomunikacji i Informatyki Politechniki Gdańskiej, nr 9, seria: ICT Young. [online] \url{https://www.ire.pw.edu.pl/~pplonski/papers/ICT_YOUNG_2011_pplonski_referat.pdf}, data dostępu: 31.01.2026.\\
+\textit{[7] PWN Encyklopedia} [online]  \url{https://encyklopedia.pwn.pl/haslo/filogeneza;3900970.html}, data dostępu: 09.01.2026. \\
+\textit{[8]} Georgia Tech Biological Sciences \textit{Phylogenetic Trees} [online]  \url{https://organismalbio.biosci.gatech.edu/biodiversity/phylogenetic-trees/}, data dostępu: 09.01.2026.\\
+\textit{[9]} Krzysztof Spalik, Marcin Piwczyński \textit{Rekonstrukcja filogenezy i wnioskowanie filogenetyczne w badaniach ewolucyjnych} [artykuł] KOSMOS, Problemy Nauk Biologicznych, t. 58, nr 3–4, 2009, s. 485–498.\\
+\textit{[10]} Sievers, F. Higgins, D. G. (2017) \textit{Clustal Omega for making accurate alignments of many protein sequences}.\textit{Protein Science} 27(1), 135–145, [online] \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC5734385/}, data dostępu 30.01.2026 \\
+\textit{[11]} Notredame, C. Higgins, D. G. Heringa, J. (2000) \textit{T-Coffee: A novel method for multiple sequence alignments}, \textit{Journal of Molecular Biology}, 302(1), 205–217, [online] \url{https://tcoffee.org/Publications/Pdf/tcoffee.pdf}, data dostępu 30.01.2026.\\
+\textit{[12]} Ari Löytynoja, Nick Goldman (2010) \textit{PRANK: A probabilistic multiple sequence alignment program for DNA, codon and amino-acid sequences}. [online] \url{https://ariloytynoja.github.io/prank-msa/}, data dostępu: 30.01.2026. \\
+\textit{[13]} Waterhouse, A. M., Procter, J. B., Martin, D. M. A., Clamp, M., Barton, G. J. (2009) \textit{Jalview Version 2—a multiple sequence alignment editor and analysis workbench}.\textit{Bioinformatics}, 25(9), 1189–1191. [online] \url{https://www.jalview.org/}, data dostępu: 30.01.2026.\\
+\textit{[14]} Larsson, A. (2014) \textit{AliView: a fast and lightweight alignment viewer and editor for large datasets}. [online]\url{http://www.ormbunkar.se/aliview/}, data dostępu: 30.01.2026.\\
+\textit{[15]} Kozlov, A. M., Darriba, D., Flouri, T., Morel, B., Stamatakis, A. (2019) \textit{RAxML-NG: a fast, scalable and user-friendly tool for maximum likelihood phylogenetic inference}. \textit{Bioinformatics}, 35(21), 4453–4455. [online] \url{https://github.com/amkozlov/raxml-ng}, data dostępu: 30.01.2026.\\
+\textit{[16]} Ronquist, F., Teslenko, M., van der Mark, P., Ayres, D. L., Darling, A., Höhna, S., Larget, B., Liu, L., Suchard, M. A., Huelsenbeck, J. P. (2012) \textit{MrBayes 3.2: Efficient Bayesian phylogenetic inference and model choice across a large model space}. \textit{Systematic Biology}, 61(3), 539–542. [online] \url{https://nbisweden.github.io/MrBayes/}, data dostępu: 30.01.2026.\\
+\textit{[17]} Kumar, S., Stecher, G., Li, M., Knyaz, C., Tamura, K. (2018) \textit{MEGA X: Molecular Evolutionary Genetics Analysis across computing platforms}. \textit{Molecular Biology and Evolution}, 35(6), 1547–1549. [online] \url{https://www.megasoftware.net/}, data dostępu: 30.01.2026.\\
+\textit{[18]} Rambaut, A. (2018) \textit{FigTree v1.4.4: Tree figure drawing tool}. [online] \url{https://tree.bio.ed.ac.uk/software/figtree/}, data dostępu: 30.01.2026.\\
+\textit{[19]} Huson, D. H., Scornavacca, C. (2012) \textit{Dendroscope 3: An interactive tool for rooted phylogenetic trees and networks}. \textit{Systematic Biology}, 61(6), 1061–1067. [online] \url{https://uni-tuebingen.de/en/faculties/mathematics-and-natural-sciences/subjects/computer-science/research/algorithms-in-bioinformatics/software/dendroscope/}, data dostępu: 30.01.2026.\\
+\textit{[20]} Letunic, I., Bork, P. (2021) \textit{Interactive Tree Of Life (iTOL) v6: an online tool for visualization and annotation of phylogenetic trees}. \textit{Nucleic Acids Research}, 49(W1), W293–W296. [online] \url{https://itol.embl.de/}, data dostępu: 30.01.2026.\\
+\textit{[21]} Huerta-Cepas, J., Serra, F., Bork, P. (2016) \textit{ETE 3: Reconstruction, analysis, and visualization of phylogenomic data}. \textit{Molecular Biology and Evolution}, 33(6), 1635–1638. [online] \url{https://etetoolkit.org/}, data dostępu: 30.01.2026.\\
+\textit{[22]} Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler, Lars S. Jermiin \textit{ModelFinder: Fast model selection for accurate phylogenetic estimates} [artykuł] Nature Methods, 14:587–589, 2017. \url{https://doi.org/10.1038/nmeth.4285}, data dostępu: 31.01.2026. \\
+\textit{[23]} Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh, Le Sy Vinh \textit{UFBoot2: Improving the ultrafast bootstrap approximation} [artykuł] Mol. Biol. Evol., 35:518–522, 2018. \url{https://doi.org/10.1093/molbev/msx281}, data dostępu: 31.01.2026. \\
+\textit{[24]} IQ-TREE 2 Command Reference [online] \url{https://iqtree.github.io/doc/Command-Reference}, data dostępu: 29.01.2026. \\
 
-\begin{appendices}
 
-\chapter{Źródła}
 
-\subsubsection \textit{[1]} Georgia Tech Biological Sciences \textit{Phylogenetic Trees} [online]  \url{https://organismalbio.biosci.gatech.edu/biodiversity/phylogenetic-trees/}, data dostępu: 09.01.2026.
-\subsubsection \textit{[2]} National Center for Biotechnology Information [online]  \url{https://www.ncbi.nlm.nih.gov/guide/data-software/}, data dostępu: 09.01.2026.
-
-\chapter{Załączniki} %  ???????????
-
-% Dokumentacja opisująca kod (Doxygen) 
-
-% Film przedstawiający działanie programu  
+% \begin{appendices}
 
 \chapter{Lista dodatkowych plików uzupełniających tekst pracy} 
 
-W systemie do pracy dołączono dodatkowe pliki zawierające:
- %????????????
+Wszytskie dodatkowe pliki uzupełniające tekst pracy znajdują się na zdalnym repozytorium GitHub pod adresem \href{https://github.com/FilipWspanialy/PhylogeneticAnalyses}{github.com/FilipWspanialy/PhylogeneticAnalyses}.
+
+
 \listoffigures
 \addcontentsline{toc}{chapter}{Spis rysunków}
-\end{appendices}
+\listoftables
+\addcontentsline{toc}{chapter}{Spis tabel}
+% \end{appendices}
 \end{document}
 

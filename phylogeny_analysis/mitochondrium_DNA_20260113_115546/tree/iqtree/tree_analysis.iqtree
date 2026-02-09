@@ -1,0 +1,223 @@
+IQ-TREE 2.0.7 built Apr  1 2024
+
+Input file name: /mnt/c/Users/filip/phylogeny_analysis/mitochondrium_DNA_20260113_115546/alignment/alignment.fasta
+Type of analysis: ModelFinder + tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 844981
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+To cite ModelFinder please use: 
+
+Subha Kalyaanamoorthy, Bui Quang Minh, Thomas KF Wong, Arndt von Haeseler,
+and Lars S Jermiin (2017) ModelFinder: Fast model selection for
+accurate phylogenetic estimates. Nature Methods, 14:587–589.
+https://doi.org/10.1038/nmeth.4285
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 15 sequences with 27377 nucleotide sites
+Number of constant sites: 10618 (= 38.7844% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 10618 (= 38.7844% of all sites)
+Number of parsimony informative sites: 10457
+Number of distinct site patterns: 10489
+
+ModelFinder
+-----------
+
+Best-fit model according to BIC: GTR+F+R3
+
+List of models sorted by BIC scores: 
+
+Model                  LogL         AIC      w-AIC        AICc     w-AICc         BIC      w-BIC
+GTR+F+R3        -171848.726  343775.452 +    0.135  343775.566 +    0.135  344095.933 +    0.998
+GTR+F+R4        -171844.865  343771.731 +    0.865  343771.857 +    0.865  344108.647 -  0.00173
+GTR+F+G4        -171903.752  343879.503 - 3.43e-24  343879.601 - 3.47e-24  344175.332 - 5.73e-18
+GTR+F+I+G4      -171907.255  343888.511 - 3.79e-26  343888.613 - 3.83e-26  344192.557 - 1.04e-21
+TIM+F+R3        -171954.985  343983.969 - 7.08e-47  343984.072 - 7.16e-47  344288.015 - 1.95e-42
+GTR+F+R2        -172020.398  344114.796 - 2.76e-75  344114.899 - 2.79e-75  344418.842 - 7.59e-71
+TVM+F+R3        -172063.469  344202.939 -    2e-94  344203.047 - 2.02e-94  344515.202 - 9.04e-92
+TIM2+F+R3       -172152.053  344378.106 - 1.84e-132  344378.208 - 1.86e-132  344682.152 - 5.05e-128
+K3Pu+F+R3       -172162.184  344396.369 - 1.99e-136  344396.466 - 2.02e-136  344692.197 - 3.33e-130
+TIM3+F+R3       -172320.737  344715.473 - 1.01e-205  344715.576 - 1.03e-205  345019.519 - 2.79e-201
+TPM2+F+R3       -172369.111  344810.221 - 2.7e-226  344810.319 - 2.74e-226  345106.050 - 4.52e-220
+TPM2u+F+R3      -172369.111  344810.221 - 2.7e-226  344810.319 - 2.74e-226  345106.050 - 4.52e-220
+TN+F+R3         -172418.795  344909.590 - 7.15e-248  344909.688 - 7.24e-248  345205.419 - 1.2e-241
+TPM3+F+R3       -172501.185  345074.371 - 1.18e-283  345074.468 - 1.2e-283  345370.200 - 1.98e-277
+TPM3u+F+R3      -172501.185  345074.371 - 1.18e-283  345074.468 - 1.2e-283  345370.200 - 1.98e-277
+HKY+F+R3        -172598.352  345266.704 -        0  345266.796 -        0  345554.315 - 2.07e-317
+GTR+F+I         -174014.075  348100.150 -        0  348100.247 -        0  348395.978 -        0
+F81+F+R3        -174726.461  349520.922 -        0  349521.009 -        0  349800.316 -        0
+GTR+F           -175507.379  351084.757 -        0  351084.849 -        0  351372.368 -        0
+SYM+R3          -176402.974  352877.948 -        0  352878.045 -        0  353173.777 -        0
+TVMe+R3         -177347.218  354764.436 -        0  354764.528 -        0  355052.047 -        0
+TIM2e+R3        -178320.389  356708.778 -        0  356708.865 -        0  356988.172 -        0
+TIMe+R3         -178647.422  357362.843 -        0  357362.930 -        0  357642.237 -        0
+K3P+R3          -179764.379  359594.758 -        0  359594.840 -        0  359865.934 -        0
+TIM3e+R3        -180268.122  360604.245 -        0  360604.332 -        0  360883.638 -        0
+TNe+R3          -181534.301  363134.602 -        0  363134.684 -        0  363405.778 -        0
+K2P+R3          -182624.478  365312.957 -        0  365313.034 -        0  365575.916 -        0
+JC+R3           -182943.485  365948.971 -        0  365949.043 -        0  366203.712 -        0
+
+AIC, w-AIC   : Akaike information criterion scores and weights.
+AICc, w-AICc : Corrected AIC scores and weights.
+BIC, w-BIC   : Bayesian information criterion scores and weights.
+
+Plus signs denote the 95% confidence sets.
+Minus signs denote significant exclusion.
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: GTR+F+R3
+
+Rate parameter R:
+
+  A-C: 2.2313
+  A-G: 6.6690
+  A-T: 4.5162
+  C-G: 3.2604
+  C-T: 11.3735
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.4027
+  pi(C) = 0.1575
+  pi(G) = 0.09715
+  pi(T) = 0.3427
+
+Rate matrix Q:
+
+  A   -0.7393     0.102    0.1881    0.4493
+  C    0.2608    -1.484   0.09195     1.131
+  G    0.7795     0.149    -1.028   0.09948
+  T    0.5279    0.5198    0.0282    -1.076
+
+Model of rate heterogeneity: FreeRate with 3 categories
+Site proportion and rates:  (0.4377,0.1857) (0.4232,1.014) (0.1391,3.52)
+
+ Category  Relative_rate  Proportion
+  1         0.1857         0.4377
+  2         1.014          0.4232
+  3         3.52           0.1391
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -171847.7701 (s.e. 817.2842)
+Unconstrained log-likelihood (without tree): -203067.5180
+Number of free parameters (#branches + #model parameters): 39
+Akaike information criterion (AIC) score: 343773.5401
+Corrected Akaike information criterion (AICc) score: 343773.6543
+Bayesian information criterion (BIC) score: 344094.0210
+
+Total tree length (sum of branch lengths): 6.3879
+Sum of internal branch lengths: 2.8720 (44.9607% of tree length)
+
+NOTE: Tree is UNROOTED although outgroup taxon 'seq1' is drawn at root
+Numbers in parentheses are SH-aLRT support (%) / ultrafast bootstrap support (%)
+
++--seq1
+|
+|              +--seq2
+|           +--| (100/100)
+|           |  |  +--seq4
+|           |  +--| (99.2/95)
+|           |     +--seq7
+|        +--| (98.3/94)
+|        |  |      +--seq11
+|        |  |   +--| (100/100)
+|        |  |   |  +--seq12
+|        |  +---| (100/100)
+|        |      |  +--seq13
+|        |      +--| (100/100)
+|        |         |  +--seq14
+|        |         +--| (99.6/98)
+|        |            +--seq15
+|     +--| (75.3/78)
+|     |  |                     +--seq8
+|     |  |                 +---| (100/100)
+|     |  |                 |   +--seq9
+|     |  +-----------------| (100/100)
+|     |                    +--------------------------------seq10
++-----| (100/100)
+|     |      +--seq5
+|     +------| (100/100)
+|            +--seq6
+|
++---seq3
+
+Tree in newick format:
+
+(seq1:0.1784365292,((((seq2:0.1557376754,(seq4:0.1273468441,seq7:0.1077738523)99.2/95:0.0414969570)100/100:0.1945094867,((seq11:0.1114073079,seq12:0.0940663937)100/100:0.0317374818,(seq13:0.0916830199,(seq14:0.0729473411,seq15:0.0905863782)99.6/98:0.0292571795)100/100:0.0449912891)100/100:0.2567622808)98.3/94:0.0640475329,((seq8:0.1626368849,seq9:0.1573946541)100/100:0.2518502002,seq10:1.8966413133)100/100:1.0836118800)75.3/78:0.0713014724,(seq5:0.0082878102,seq6:0.0165306667)100/100:0.4214857272)100/100:0.3809762152,seq3:0.2443645202);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -171847.769927
+Robinson-Foulds distance between ML tree and consensus tree: 0
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++--seq1
+|
+|              +--seq2
+|           +--| (100)
+|           |  |  +--seq4
+|           |  +--| (95)
+|           |     +--seq7
+|        +--| (94)
+|        |  |      +--seq11
+|        |  |   +--| (100)
+|        |  |   |  +--seq12
+|        |  +---| (100)
+|        |      |  +--seq13
+|        |      +--| (100)
+|        |         |  +--seq14
+|        |         +--| (98)
+|        |            +--seq15
+|     +--| (78)
+|     |  |                     +--seq8
+|     |  |                 +---| (100)
+|     |  |                 |   +--seq9
+|     |  +-----------------| (100)
+|     |                    +--------------------------------seq10
++-----| (100)
+|     |      +--seq5
+|     +------| (100)
+|            +--seq6
+|
++---seq3
+
+
+Consensus tree in newick format: 
+
+(seq1:0.1783789418,((((seq2:0.1557693230,(seq4:0.1273697055,seq7:0.1078117581)95:0.0415087845)100:0.1945815676,((seq11:0.1114409007,seq12:0.0941057796)100:0.0317568187,(seq13:0.0917242400,(seq14:0.0729651643,seq15:0.0906271694)98:0.0292547276)100:0.0449783410)100:0.2568407763)94:0.0640143374,((seq8:0.1626448876,seq9:0.1574388216)100:0.2520240862,seq10:1.8969950573)100:1.0837578011)78:0.0712794473,(seq5:0.0083175729,seq6:0.0165087668)100:0.4215762549)100:0.3810429659,seq3:0.2444395964);
+
+TIME STAMP
+----------
+
+Date and time: Tue Jan 13 12:06:13 2026
+Total CPU time used: 152.584177 seconds (0h:2m:32s)
+Total wall-clock time used: 80.79941455 seconds (0h:1m:20s)
+
